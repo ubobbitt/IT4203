@@ -2,7 +2,34 @@
 <html>
 <head>
 <title>Milestone 1.1 IT Ebooks Search List</title>
-<style> body {background-color: yellow;}</style>
+<style> 
+body {background-color: yellow;}
+#page {margin: 1% auto;
+       width: 95%;
+	   border: 2px solid black;
+	   border-radius: 5px;
+	   font-family: sans-serif;
+	   background-color: white;
+	   cursor: default;
+	   -webkit-user-select: none;
+	   -moz-user-select: none;
+	   -ms-user-select: none;
+	   user-select: none;}
+//header {text-align: center;}
+main {margin: 0 auto;
+	  width: 65%;
+	  border: 1px solid black;
+	  padding: 1%;}
+//footer {clear: both;
+//		margin: 15px auto 5px 5px;
+//		text-align: left;
+//		padding-left: 1%;}
+a, summary { cursor: pointer; }
+@media all and (max-width: 860px) {main {width: 85%;}}
+img {float: left;
+	 margin-right: 0.50%;}
+.clear {clear: both;}
+</style>
 <script src="jquery-3.3.1.min.js"></script>
 </head>
 
@@ -11,24 +38,26 @@
 <h1>Milestone 1.1</p> 
 <h2>IT Ebooks Search List</h2>
 <p>This returns a list of books as a search result in the JSON format.</p>
+<section id="page">
 
-<div id="books"></div>
-
-	<script>
-		$(document).ready(function() {
-			$.getJSON("it-ebooks-search.json", function(data) {
-				for (var x = 0; x < data.Books.length; x++) {
-					var book = data.Books[x];
-					$("#books").append("<div><img src='"+book["Image"]
-					+"' alt='"+book["Title"]+"'/><span><strong>Title:</strong> "
-					+book["Title"]+"</span><br/><span><strong>Subtitle:</strong> "
-					+book["SubTitle"]+"</span><br/><span><strong>Description:</strong> "
-					+book["Description"]+"</span></br><span><strong>ISBN:</strong> "
-					+book["isbn"]+"</span></div><div class='clear'></div><br/>");
-				}
+<main><div id="books"></div></main>
+</section>
+<script> $(document).ready(function() 
+         {
+            $.getJSON("it-ebooks-search.json", function(data) 
+			{
+			   for (var x = 0; x < data.Books.length; x++) 
+			   {
+			      var book = data.Books[x];
+				  $("#books").append("<div><img src='"+book["Image"]
+				  +"' alt='"+book["Title"]+"'/><span><strong>Title:</strong> "
+				  +book["Title"]+"</span><br/><span><strong>Subtitle:</strong> "
+				  +book["SubTitle"]+"</span><br/><span><strong>Description:</strong> "
+				  +book["Description"]+"</span></br><span><strong>ISBN:</strong> "
+				  +book["isbn"]+"</span></div><div class='clear'></div><br/>");
+			   }
 			});
-			$("main").append("<a href='/IT4203/milestone1.html' title='Return to Milestone 1 Overview'>Return to Milestone 1 Overview</a>");
-		});
+		 });
 	</script>
 <br></br>
 <a href="milestone1.html">Milestone 1</a>
