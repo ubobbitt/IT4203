@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Milestone 1.1 IT Ebooks Search List</title>
+<style> body {background-color: yellow;}</style>
+<script src="jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<h1>IT 4203 Individual Project</h1> 
+<h1>Milestone 1.1</p> 
+<h2>IT Ebooks Search List</h2>
+<p>This returns a list of books as a search result in the JSON format.</p>
+
+
+	<script>
+		$(document).ready(function() {
+			$.getJSON("it-ebooks-search.json", function(data) {
+				for (var x = 0; i < data.Books.length; x++) {
+					var book = data.Books[i];
+					$("#books").append("<div><img src='"+book["Image"]+"' alt='"+book["Title"]+"'/><span><strong>Title:</strong> "+item["Title"]+"</span><br/><span><strong>Subtitle:</strong> "+item["SubTitle"]+"</span><br/><span><strong>Description:</strong> "+book["Description"]+"</span></br><span><strong>ISBN:</strong> "+book["isbn"]+"</span></div><div class='clear'></div><br/>");
+				}
+			});
+			$("main").append("<a href="milestone1.html" Milestone 1</a>");
+		});
+	</script>
+
+<a href="index.html">Home</a>
+</body>
+</html>
