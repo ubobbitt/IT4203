@@ -12,17 +12,46 @@
 <p>This returns a list of books as a search result in the JSON format.</p>
 
 
-	<script>
-		$(document).ready(function() {
-			$.getJSON("it-ebooks-search.json", function(data) {
-				for (var x = 0; x < data.Books.length; x++) {
-					var book = data.Books[x];
-					$("#books").append("<div><img src='"+book["Image"]+"' alt='"+book["Title"]+"'/><span><strong>Title:</strong> "+book["Title"]+"</span><br/><span><strong>Subtitle:</strong> "+book["SubTitle"]+"</span><br/><span><strong>Description:</strong> "+book["Description"]+"</span></br><span><strong>ISBN:</strong> "+book["isbn"]+"</span></div><div class='clear'></div><br/>");
+
+
+<script>
+    $(function(){
+        $.getJSON("it-ebooks-search.json", function (json)
+            {
+            $("#Info").html("<span style='font-weight:bold'>Error: "+json.Error
+							+"<br><span style='font-weight:bold'>Time:</span> "+json.Time
+							+"<br><span style='font-weight:bold'>Total:</span> "+json.Total
+							+"<br><span style='font-weight:bold'>Page:</span> "+json.Page
+							+"<br><br>");
+
+            var bookHTML="";
+
+            for (i in json.Books)
+            {
+				if (json.Books[i].SubTitle == void(0) || typeof json.Books[i].SubTitle == 'undefined') {
+					bookHTML+="<div class='booklist'><div class='left'>"
+					+"<span style='font-weight:bold'>ID:</span> "+json.Books[i].ID;
+					bookHTML+="<br><span style='font-weight:bold'>Title:</span> "+json.Books[i].Title;
+					bookHTML+="<br><span style='font-weight:bold'>Description:</span> "+json.Books[i].Description;
+					bookHTML+="<br><span style='font-weight:bold'>ISBN:</span> "+json.Books[i].isbn;
+					bookHTML+="<br></div>";
+					bookHTML+="<div class='right'><img src='"+json.Books[i].Image+"'></div></div>";
 				}
-			});
-			
-		});
-	</script>
+				else {
+					bookHTML+="<div class='booklist'><div class='left'>"
+					+"<span style='font-weight:bold'>ID:</span> "+json.Books[i].ID;
+					bookHTML+="<br><span style='font-weight:bold'>Title:</span> "+json.Books[i].Title;
+					bookHTML+="<br><span style='font-weight:bold'>Subtitle:</span> "+json.Books[i].SubTitle;
+					bookHTML+="<br><span style='font-weight:bold'>Description:</span> "+json.Books[i].Description;
+					bookHTML+="<br><span style='font-weight:bold'>ISBN:</span> "+json.Books[i].isbn;
+					bookHTML+="<br></div>";
+					bookHTML+="<div class='right'><img src='"+json.Books[i].Image+"'></div></div>";
+				}
+            }
+            $("#Books").html(bookHTML);
+            }); 
+    })
+</script>
 
 <a href="index.html">Home</a>
 </body>
