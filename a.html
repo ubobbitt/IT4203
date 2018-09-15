@@ -16,11 +16,13 @@ body {background-color: yellow;}
 	   -ms-user-select: none;
 	   user-select: none;}
 //header {text-align: center;}
-main {margin: 0 auto;
-	  width: 65%;
-	  //border: 1px solid black;
-	  padding: 1%;}
-//footer {clear: both;
+
+//main {margin: 0 auto;
+//	  width: 65%;
+//	  //border: 1px solid black;
+//	  padding: 1%;}
+
+	  //footer {clear: both;
 //		margin: 15px auto 5px 5px;
 //		text-align: left;
 //		padding-left: 1%;}
@@ -40,10 +42,10 @@ img {float: left;
 <p>This displays a list of books as a search result in the JSON format.</p>
 <section id="page">
 
-<main>
+//<main>
 <div id="info"></div>
 <div id="books"></div>
-</main>
+//</main>
 </section>
 <script> $(document).ready(function() 
          {
@@ -54,7 +56,9 @@ img {float: left;
 							+"<br><span style='font-weight:bold'>Total:</span> "+json.Total
 							+"<br><span style='font-weight:bold'>Page:</span> "+json.Page
 							+"<br><br>");
+							
                var bookHTML="";
+			   
 			   for (var x = 0; x < data.Books.length; x++) 
 			   {
 			      var book = data.Books[x];
