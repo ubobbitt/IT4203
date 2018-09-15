@@ -17,7 +17,7 @@
 			$.getJSON("it-ebooks-search.json", function(data) {
 				for (var x = 0; x < data.Books.length; x++) {
 					var book = data.Books[x];
-					$("#books").append("<div><img src='"+book["Image"]+"' alt='"+book["Title"]+"'/><span><strong>Title:</strong> "+item["Title"]+"</span><br/><span><strong>Subtitle:</strong> "+item["SubTitle"]+"</span><br/><span><strong>Description:</strong> "+book["Description"]+"</span></br><span><strong>ISBN:</strong> "+book["isbn"]+"</span></div><div class='clear'></div><br/>");
+					$("#books").append("<div><img src='"+book["Image"]+"' alt='"+book["Title"]+"'/><span><strong>Title:</strong> "+book["Title"]+"</span><br/><span><strong>Subtitle:</strong> "+book["SubTitle"]+"</span><br/><span><strong>Description:</strong> "+book["Description"]+"</span></br><span><strong>ISBN:</strong> "+book["isbn"]+"</span></div><div class='clear'></div><br/>");
 				}
 			});
 			$("main").append("<a href="milestone1.html" Milestone 1</a>");
