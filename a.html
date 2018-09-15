@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Milestone 1.1 IT Ebooks Search List</title>
+<style> body {background-color: yellow;}</style>
+<script src="jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+<h1>IT 4203 Individual Project</h1> 
+<h1>Milestone 1.1</p> 
+<h2>IT Ebooks Search List</h2>
+<p>This returns a list of books as a search result in the JSON format.</p>
+
+<div id="books"></div>
+
+	<script>
+		$(document).ready(function() {
+			$.getJSON("it-ebooks-search.json", function(data) {
+				for (var x = 0; x < data.Books.length; x++) {
+					var book = data.Books[x];
+					$("#books").append("<div><img src='"+book["Image"]
+					+"' alt='"+book["Title"]+"'/><span><strong>Title:</strong> "
+					+book["Title"]+"</span><br/><span><strong>Subtitle:</strong> "
+					+book["SubTitle"]+"</span><br/><span><strong>Description:</strong> "
+					+book["Description"]+"</span></br><span><strong>ISBN:</strong> "
+					+book["isbn"]+"</span></div><div class='clear'></div><br/>");
+				}
+			});
+			$("main").append("<a href='/IT4203/milestone1.html' title='Return to Milestone 1 Overview'>Return to Milestone 1 Overview</a>");
+		});
+	</script>
+<br></br>
+<a href="milestone1.html"Milestone 1</a>
+<a href="index.html">Home</a>
+</body>
+</html>
