@@ -24,13 +24,7 @@ img {float: left;
 			{									
 			   var bookHTML="";
 			   
-			   for (x in json.items)
-			   {   
-				   bookHTML+="<div class='right'>";
-			       bookHTML+="<br><span style='font-weight:bold'>Title: </span>"+json.volumeInfo.title;
-			       bookHTML+="<br><span style='font-weight:bold'>Subtitle: </span>"+json.volumeInfo.subtitle;
-			       bookHTML+="<br><span style='font-weight:bold'>Author: </span>"+json.volumeInfo.authors;
-				}
+			   bookHTML+="<br><span style='font-weight:bold'>Description: </span>"+json.description;
 			}
 	     }
 </script>
