@@ -16,80 +16,81 @@ img {float: left;
 <h1>Milestone 1.2</p> 
 <h2>Google Books Single Book</h2>
 <p>This displays a single book's data in the JSON format.</p>
+<p>The JSON file can be viewed here: <a href="google-books-book.json" target="_blank">google-books-book.json</a></p>
 <div id="book"></div>
 <script> $(function() 
          {
             $.getJSON("google-books-book.json", function(json) 
 			{									
-			   var bookFile="";
+			   var bookHTML="";
 			
-			   bookFile+="<span style='padding:10px;'><h2 style='display:inline;'>"
-			   +json.volumeInfo.title+": </h2>"+json.volumeInfo.subtitle+"</span>";
+			   bookHTML+="<span style='padding:10px;'><h2 style='display:inline;'>"
+			   +json.volumeInfo.title+": </h2>"+"</span>";
 			
-			   bookFile+="<div class='booklist'><div class='left'>"
-			   bookFile+="<br><img src='"+json.volumeInfo.imageLinks.thumbnail+"'>";
-			   bookFile+="<br></div>";
+			   bookHTML+="<div class='booklist'><div class='left'>"
+			   bookHTML+="<br><img src='"+json.volumeInfo.imageLinks.thumbnail+"'>";
+			   bookHTML+="<br></div>";
 			
-			   bookFile+="<div class='right'>";
-			   bookFile+="<br>"+json.volumeInfo.authors;
-			   bookFile+="<br>"+json.volumeInfo.publisher;
-			   bookFile+=", "+json.volumeInfo.publishedDate;
-			   bookFile+="<br>"+json.volumeInfo.pageCount+" pages";
-			   bookFile+="<br>Average Rating: "+json.volumeInfo.averageRating;
-			   bookFile+="<br>Ratings Count: "+json.volumeInfo.ratingsCount;
-			   bookFile+="<br>"+json.volumeInfo.description;
+			   bookHTML+="<div class='right'>";
+			   bookHTML+="<br><span style='font-weight:bold'>Author: </span>"+json.volumeInfo.authors;
+			   bookHTML+="<br><span style='font-weight:bold'>Publisher: </span>"+json.volumeInfo.publisher;
+			   bookHTML+="<br><span style='font-weight:bold'>Published Date: </span>"+json.volumeInfo.publishedDate;
+			   bookHTML+="<br>"+json.volumeInfo.pageCount+" pages";
+			   bookHTML+="<br>Average Rating: "+json.volumeInfo.averageRating;
+			   bookHTML+="<br>Ratings Count: "+json.volumeInfo.ratingsCount;
+			   bookHTML+="<br><span style='font-weight:bold'>Description: </span>"+json.volumeInfo.description;
 			
-			   bookFile+="<br><span style='font-weight:bold'>Kind: </span>"+json.kind;
-			   bookFile+="<br><span style='font-weight:bold'>ID: </span>"+json.id;
-			   bookFile+="<br><span style='font-weight:bold'>eTag: </span>"+json.etag;
-			   bookFile+="<br><span style='font-weight:bold'>Self Link: </span><a href='"+json.selfLink+"'>"+json.selfLink+"</a>";
+			   bookHTML+="<br><span style='font-weight:bold'>Kind: </span>"+json.kind;
+			   bookHTML+="<br><span style='font-weight:bold'>ID: </span>"+json.id;
+			   bookHTML+="<br><span style='font-weight:bold'>eTag: </span>"+json.etag;
+			   bookHTML+="<br><span style='font-weight:bold'>Self Link: </span><a href='"+json.selfLink+"'>"+json.selfLink+"</a>";
 			
 			   for (i in json.volumeInfo.industryIdentifiers)
                {
-                  bookFile+="<br><span style='font-weight:bold'>Industry Identifiers Type: </span>"+json.volumeInfo.industryIdentifiers[i].type;
-				  bookFile+="<br><span style='font-weight:bold'>Industry Identifiers Identifier: </span>"+json.volumeInfo.industryIdentifiers[i].identifier;
+                  bookHTML+="<br><span style='font-weight:bold'>Industry Identifiers Type: </span>"+json.volumeInfo.industryIdentifiers[i].type;
+				  bookHTML+="<br><span style='font-weight:bold'>Industry Identifiers Identifier: </span>"+json.volumeInfo.industryIdentifiers[i].identifier;
                }
 			
-			   bookFile+="<br><span style='font-weight:bold'>Reading Modes Text: </span>"+json.volumeInfo.readingModes.text;
-			   bookFile+="<br><span style='font-weight:bold'>Reading Modes Image: </span>"+json.volumeInfo.readingModes.image;
-			   bookFile+="<br><span style='font-weight:bold'>Height: </span>"+json.volumeInfo.dimensions.height;
-			   bookFile+="<br><span style='font-weight:bold'>Width: </span>"+json.volumeInfo.dimensions.width;
-			   bookFile+="<br><span style='font-weight:bold'>Thickness: </span>"+json.volumeInfo.dimensions.thickness;
-			   bookFile+="<br><span style='font-weight:bold'>Print Type: </span>"+json.volumeInfo.printType;
+			   bookHTML+="<br><span style='font-weight:bold'>Reading Modes Text: </span>"+json.volumeInfo.readingModes.text;
+			   bookHTML+="<br><span style='font-weight:bold'>Reading Modes Image: </span>"+json.volumeInfo.readingModes.image;
+			   bookHTML+="<br><span style='font-weight:bold'>Height: </span>"+json.volumeInfo.dimensions.height;
+			   bookHTML+="<br><span style='font-weight:bold'>Width: </span>"+json.volumeInfo.dimensions.width;
+			   bookHTML+="<br><span style='font-weight:bold'>Thickness: </span>"+json.volumeInfo.dimensions.thickness;
+			   bookHTML+="<br><span style='font-weight:bold'>Print Type: </span>"+json.volumeInfo.printType;
 			   
 			   for (i in json.volumeInfo.categories)
                {
-                  bookFile+="<br><span style='font-weight:bold'>Categories: </span>"+json.volumeInfo.categories[i];
+                  bookHTML+="<br><span style='font-weight:bold'>Categories: </span>"+json.volumeInfo.categories[i];
                }
 			
-			   bookFile+="<br><span style='font-weight:bold'>Maturity Rating: </span>"+json.volumeInfo.maturityRating;
-			   bookFile+="<br><span style='font-weight:bold'>Allow Anon Logging: </span>"+json.volumeInfo.allowAnonLogging;
-			   bookFile+="<br><span style='font-weight:bold'>Content Version: </span>"+json.volumeInfo.contentVersion;
-			   bookFile+="<br><span style='font-weight:bold'>Contains Epub Bubbles: </span>"+json.volumeInfo.panelizationSummary.containsEpubBubbles;
-			   bookFile+="<br><span style='font-weight:bold'>Contains Image Bubbles: </span>"+json.volumeInfo.panelizationSummary.containsImageBubbles;
-			   bookFile+="<br><span style='font-weight:bold'>Language: </span>"+json.volumeInfo.language;
-			   bookFile+="<br><span style='font-weight:bold'>Preview Link: </span><a href='"+json.volumeInfo.previewLink+"'>"+json.volumeInfo.previewLink+"</a>";
-			   bookFile+="<br><span style='font-weight:bold'>Info Link: </span><a href='"+json.volumeInfo.infoLink+"'>"+json.volumeInfo.infoLink+"</a>";
-			   bookFile+="<br><span style='font-weight:bold'>Canonical Volume Link: </span><a href='"+json.volumeInfo.canonicalVolumeLink+"'>"+json.volumeInfo.canonicalVolumeLink+"</a>";
-			   bookFile+="<br><span style='font-weight:bold'>Layer ID: </span>"+json.layerInfo.layers.layerId;
-			   bookFile+="<br><span style='font-weight:bold'>Volume Annotations Version: </span>"+json.layerInfo.layers.volumeAnnotationsVersion;
-			   bookFile+="<br><span style='font-weight:bold'>Sale Country: </span>"+json.saleInfo.country;
-			   bookFile+="<br><span style='font-weight:bold'>Saleability: </span>"+json.saleInfo.saleability;
-			   bookFile+="<br><span style='font-weight:bold'>Is Ebook: </span>"+json.saleInfo.isEbook;
-			   bookFile+="<br><span style='font-weight:bold'>Country: </span>"+json.accessInfo.country;
-			   bookFile+="<br><span style='font-weight:bold'>Viewability: </span>"+json.accessInfo.viewability;
-			   bookFile+="<br><span style='font-weight:bold'>Embeddable: </span>"+json.accessInfo.embeddable;
-			   bookFile+="<br><span style='font-weight:bold'>Public Domain: </span>"+json.accessInfo.publicDomain;
-			   bookFile+="<br><span style='font-weight:bold'>Text to Speech Permission: </span>"+json.accessInfo.textToSpeechPermission;
-			   bookFile+="<br><span style='font-weight:bold'>Epub Is Available: </span>"+json.accessInfo.epub.isAvailable;
-			   bookFile+="<br><span style='font-weight:bold'>PDF Is Available: </span>"+json.accessInfo.pdf.isAvailable;
-			   bookFile+="<br><span style='font-weight:bold'>Web Reader Link: </span><a href='"+json.accessInfo.webReaderLink+"'>"+json.accessInfo.webReaderLink+"</a>";
-			   bookFile+="<br><span style='font-weight:bold'>Access View Status: </span>"+json.accessInfo.accessViewStatus;
-			   bookFile+="<br><span style='font-weight:bold'>Quote Sharing Allowed: </span>"+json.accessInfo.quoteSharingAllowed;
+			   bookHTML+="<br><span style='font-weight:bold'>Maturity Rating: </span>"+json.volumeInfo.maturityRating;
+			   bookHTML+="<br><span style='font-weight:bold'>Allow Anon Logging: </span>"+json.volumeInfo.allowAnonLogging;
+			   bookHTML+="<br><span style='font-weight:bold'>Content Version: </span>"+json.volumeInfo.contentVersion;
+			   bookHTML+="<br><span style='font-weight:bold'>Contains Epub Bubbles: </span>"+json.volumeInfo.panelizationSummary.containsEpubBubbles;
+			   bookHTML+="<br><span style='font-weight:bold'>Contains Image Bubbles: </span>"+json.volumeInfo.panelizationSummary.containsImageBubbles;
+			   bookHTML+="<br><span style='font-weight:bold'>Language: </span>"+json.volumeInfo.language;
+			   bookHTML+="<br><span style='font-weight:bold'>Preview Link: </span><a href='"+json.volumeInfo.previewLink+"'>"+json.volumeInfo.previewLink+"</a>";
+			   bookHTML+="<br><span style='font-weight:bold'>Info Link: </span><a href='"+json.volumeInfo.infoLink+"'>"+json.volumeInfo.infoLink+"</a>";
+			   bookHTML+="<br><span style='font-weight:bold'>Canonical Volume Link: </span><a href='"+json.volumeInfo.canonicalVolumeLink+"'>"+json.volumeInfo.canonicalVolumeLink+"</a>";
+			   bookHTML+="<br><span style='font-weight:bold'>Layer ID: </span>"+json.layerInfo.layers.layerId;
+			   bookHTML+="<br><span style='font-weight:bold'>Volume Annotations Version: </span>"+json.layerInfo.layers.volumeAnnotationsVersion;
+			   bookHTML+="<br><span style='font-weight:bold'>Sale Country: </span>"+json.saleInfo.country;
+			   bookHTML+="<br><span style='font-weight:bold'>Saleability: </span>"+json.saleInfo.saleability;
+			   bookHTML+="<br><span style='font-weight:bold'>Is Ebook: </span>"+json.saleInfo.isEbook;
+			   bookHTML+="<br><span style='font-weight:bold'>Country: </span>"+json.accessInfo.country;
+			   bookHTML+="<br><span style='font-weight:bold'>Viewability: </span>"+json.accessInfo.viewability;
+			   bookHTML+="<br><span style='font-weight:bold'>Embeddable: </span>"+json.accessInfo.embeddable;
+			   bookHTML+="<br><span style='font-weight:bold'>Public Domain: </span>"+json.accessInfo.publicDomain;
+			   bookHTML+="<br><span style='font-weight:bold'>Text to Speech Permission: </span>"+json.accessInfo.textToSpeechPermission;
+			   bookHTML+="<br><span style='font-weight:bold'>Epub Is Available: </span>"+json.accessInfo.epub.isAvailable;
+			   bookHTML+="<br><span style='font-weight:bold'>PDF Is Available: </span>"+json.accessInfo.pdf.isAvailable;
+			   bookHTML+="<br><span style='font-weight:bold'>Web Reader Link: </span><a href='"+json.accessInfo.webReaderLink+"'>"+json.accessInfo.webReaderLink+"</a>";
+			   bookHTML+="<br><span style='font-weight:bold'>Access View Status: </span>"+json.accessInfo.accessViewStatus;
+			   bookHTML+="<br><span style='font-weight:bold'>Quote Sharing Allowed: </span>"+json.accessInfo.quoteSharingAllowed;
 			
-			   bookFile+="</div></div>";
+			   bookHTML+="</div></div>";
 			
-			   $("#book").html(bookFile);
+			   $("#book").html(bookHTML);
             }); 
          });
 	</script>
