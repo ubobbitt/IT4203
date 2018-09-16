@@ -20,13 +20,20 @@ img {float: left;
 <script> $(document).ready(function() 
          {
             $.getJSON("it-ebooks-search.json", function(data) 
-			{		   
+			{		 
+			   $("#Info").html("<span style='font-weight:bold'>Error: "+json.Error
+							+"<br><span style='font-weight:bold'>Time:</span> "+json.Time
+							+"<br><span style='font-weight:bold'>Total:</span> "+json.Total
+							+"<br><span style='font-weight:bold'>Page:</span> "+json.Page
+							+"<br><br>");
+							
 			   for (var x = 0; x < data.Books.length; x++) 
 			   {
 			      var book = data.Books[x];
 				  $("#books").append("<div><img src='"+book["Image"]
 				  +"' alt='"+book["Title"]+"'/><span><strong>Title:</strong> "
 				  +book["Title"]+"</span><br/><span><strong>Subtitle:</strong> "
+				  +book["authors"]
 				  +book["SubTitle"]+"</span><br/><span><strong>Description:</strong> "
 				  +book["Description"]+"</span></br><span><strong>ISBN:</strong> "
 				  +book["isbn"]+"</span></div><div class='clear'></div><br/>");
