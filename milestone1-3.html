@@ -24,14 +24,14 @@ img {float: left;
 			   {  
 			   for (var x = 0; x < data.books.length; x++) 
 			      {
-			         var books = data.books[x].volumeInfo;
-				     $("#books").append("<div><img src='"+books["imageLinks"]["thumbnail"]+"' alt='"+books["title"]
-					 +"'/><span><strong>Title:</strong> "+books["title"]
-					 +"</span><br/><span><strong>Subtitle:</strong> "+books["subtitle"]
-					 +"</span><br/><span><strong>Author:</strong> "+books["authors"][0]
-					 +"</span><br/><span><strong>Description:</strong><details><summary>Toggle Description</summary><p>"+books["description"]
-					 +"</p></details></span></br><span><strong>ISBN 10:</strong> "+books["industryIdentifiers"][0]["identifier"]
-					 +"</span></br><span><strong>ISBN 13:</strong> "+books["industryIdentifiers"][1]["identifier"]+"</span></div><div class='clear'></div><br/><hr/>");
+			         var book = data.books[x].volumeInfo;
+				     $("#books").append("<div><img src='"+book["imageLinks"]["thumbnail"]+"' alt='"+book["title"]
+					 +"'/><span><strong>Title:</strong> "+book["title"]
+					 +"</span><br/><span><strong>Subtitle:</strong> "+book["subtitle"]
+					 +"</span><br/><span><strong>Author:</strong> "+book["authors"][0]
+					 +"</span><br/><span><strong>Description:</strong><details><summary>Toggle Description</summary><p>"+book["description"]
+					 +"</p></details></span></br><span><strong>ISBN 10:</strong> "+book["industryIdentifiers"][0]["identifier"]
+					 +"</span></br><span><strong>ISBN 13:</strong> "+book["industryIdentifiers"][1]["identifier"]+"</span></div><div class='clear'></div><br/><hr/>");
 			      }
 			   });
 		     });
