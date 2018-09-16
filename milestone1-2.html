@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Milestone 1.2 Google Books Single Book</title>
+<style> 
+body {background-color: yellow;}
+img {float: left;
+	 margin-right: 0.50%;}
+.clear {clear: both;}
+</style>
+<script src="jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+<h1>IT 4203 Individual Project</h1> 
+<h1>Milestone 1.2</p> 
+<h2>Google Books Single Book</h2>
+<p>This displays a single book's data in the JSON format.</p>
+<div id="book"></div>
+<script> $(function() 
+         {
+            $.getJSON("google-books-book.json", function(json) 
+			{									
+			   var bookFile="";
+			
+			   bookFile+="<span style='padding:10px;'><h2 style='display:inline;'>"
+			   +json.volumeInfo.title+": </h2>"+json.volumeInfo.subtitle+"</span>";
+			
+			   bookFile+="<div class='booklist'><div class='left'>"
+			   bookFile+="<br><img src='"+json.volumeInfo.imageLinks.thumbnail+"'>";
+			   bookFile+="<br></div>";
+			
+			   bookFile+="<div class='right'>";
+			   bookFile+="<br>"+json.volumeInfo.authors;
+			   bookFile+="<br>"+json.volumeInfo.publisher;
+			   bookFile+=", "+json.volumeInfo.publishedDate;
+			   bookFile+="<br>"+json.volumeInfo.pageCount+" pages";
+			   bookFile+="<br>Average Rating: "+json.volumeInfo.averageRating;
+			   bookFile+="<br>Ratings Count: "+json.volumeInfo.ratingsCount;
+			   bookFile+="<br>"+json.volumeInfo.description;
+			
+			   bookFile+="<br><span style='font-weight:bold'>Kind: </span>"+json.kind;
+			   bookFile+="<br><span style='font-weight:bold'>ID: </span>"+json.id;
+			   bookFile+="<br><span style='font-weight:bold'>eTag: </span>"+json.etag;
+			   bookFile+="<br><span style='font-weight:bold'>Self Link: </span><a href='"+json.selfLink+"'>"+json.selfLink+"</a>";
+			
+			   for (i in json.volumeInfo.industryIdentifiers)
+               {
+                  bookFile+="<br><span style='font-weight:bold'>Industry Identifiers Type: </span>"+json.volumeInfo.industryIdentifiers[i].type;
+				  bookFile+="<br><span style='font-weight:bold'>Industry Identifiers Identifier: </span>"+json.volumeInfo.industryIdentifiers[i].identifier;
+               }
+			
+			   bookFile+="<br><span style='font-weight:bold'>Reading Modes Text: </span>"+json.volumeInfo.readingModes.text;
+			   bookFile+="<br><span style='font-weight:bold'>Reading Modes Image: </span>"+json.volumeInfo.readingModes.image;
+			   bookFile+="<br><span style='font-weight:bold'>Height: </span>"+json.volumeInfo.dimensions.height;
+			   bookFile+="<br><span style='font-weight:bold'>Width: </span>"+json.volumeInfo.dimensions.width;
+			   bookFile+="<br><span style='font-weight:bold'>Thickness: </span>"+json.volumeInfo.dimensions.thickness;
+			   bookFile+="<br><span style='font-weight:bold'>Print Type: </span>"+json.volumeInfo.printType;
+			   
+			   for (i in json.volumeInfo.categories)
+               {
+                  bookFile+="<br><span style='font-weight:bold'>Categories: </span>"+json.volumeInfo.categories[i];
+               }
+			
+			   bookFile+="<br><span style='font-weight:bold'>Maturity Rating: </span>"+json.volumeInfo.maturityRating;
+			   bookFile+="<br><span style='font-weight:bold'>Allow Anon Logging: </span>"+json.volumeInfo.allowAnonLogging;
+			   bookFile+="<br><span style='font-weight:bold'>Content Version: </span>"+json.volumeInfo.contentVersion;
+			   bookFile+="<br><span style='font-weight:bold'>Contains Epub Bubbles: </span>"+json.volumeInfo.panelizationSummary.containsEpubBubbles;
+			   bookFile+="<br><span style='font-weight:bold'>Contains Image Bubbles: </span>"+json.volumeInfo.panelizationSummary.containsImageBubbles;
+			   bookFile+="<br><span style='font-weight:bold'>Language: </span>"+json.volumeInfo.language;
+			   bookFile+="<br><span style='font-weight:bold'>Preview Link: </span><a href='"+json.volumeInfo.previewLink+"'>"+json.volumeInfo.previewLink+"</a>";
+			   bookFile+="<br><span style='font-weight:bold'>Info Link: </span><a href='"+json.volumeInfo.infoLink+"'>"+json.volumeInfo.infoLink+"</a>";
+			   bookFile+="<br><span style='font-weight:bold'>Canonical Volume Link: </span><a href='"+json.volumeInfo.canonicalVolumeLink+"'>"+json.volumeInfo.canonicalVolumeLink+"</a>";
+			   bookFile+="<br><span style='font-weight:bold'>Layer ID: </span>"+json.layerInfo.layers.layerId;
+			   bookFile+="<br><span style='font-weight:bold'>Volume Annotations Version: </span>"+json.layerInfo.layers.volumeAnnotationsVersion;
+			   bookFile+="<br><span style='font-weight:bold'>Sale Country: </span>"+json.saleInfo.country;
+			   bookFile+="<br><span style='font-weight:bold'>Saleability: </span>"+json.saleInfo.saleability;
+			   bookFile+="<br><span style='font-weight:bold'>Is Ebook: </span>"+json.saleInfo.isEbook;
+			   bookFile+="<br><span style='font-weight:bold'>Country: </span>"+json.accessInfo.country;
+			   bookFile+="<br><span style='font-weight:bold'>Viewability: </span>"+json.accessInfo.viewability;
+			   bookFile+="<br><span style='font-weight:bold'>Embeddable: </span>"+json.accessInfo.embeddable;
+			   bookFile+="<br><span style='font-weight:bold'>Public Domain: </span>"+json.accessInfo.publicDomain;
+			   bookFile+="<br><span style='font-weight:bold'>Text to Speech Permission: </span>"+json.accessInfo.textToSpeechPermission;
+			   bookFile+="<br><span style='font-weight:bold'>Epub Is Available: </span>"+json.accessInfo.epub.isAvailable;
+			   bookFile+="<br><span style='font-weight:bold'>PDF Is Available: </span>"+json.accessInfo.pdf.isAvailable;
+			   bookFile+="<br><span style='font-weight:bold'>Web Reader Link: </span><a href='"+json.accessInfo.webReaderLink+"'>"+json.accessInfo.webReaderLink+"</a>";
+			   bookFile+="<br><span style='font-weight:bold'>Access View Status: </span>"+json.accessInfo.accessViewStatus;
+			   bookFile+="<br><span style='font-weight:bold'>Quote Sharing Allowed: </span>"+json.accessInfo.quoteSharingAllowed;
+			
+			   bookFile+="</div></div>";
+			
+			   $("#book").html(bookFile);
+            }); 
+         });
+	</script>
+<br></br>
+<a href="milestone1.html">Milestone 1</a>
+<br></br>
+<a href="index.html">Home</a>
+</body>
+</html>
