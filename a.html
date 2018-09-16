@@ -50,15 +50,7 @@ img {float: left;
 <script> $(document).ready(function() 
          {
             $.getJSON("it-ebooks-search.json", function(data) 
-			{
-			   $("#info").html("<span style='font-weight:bold'>Error: "+json.Error
-							+"<br><span style='font-weight:bold'>Time:</span> "+json.Time
-							+"<br><span style='font-weight:bold'>Total:</span> "+json.Total
-							+"<br><span style='font-weight:bold'>Page:</span> "+json.Page
-							+"<br><br>");
-							
-               //var bookHTML="";
-			   
+			{		   
 			   for (var x = 0; x < data.Books.length; x++) 
 			   {
 			      var book = data.Books[x];
