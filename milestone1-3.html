@@ -24,8 +24,16 @@ img {float: left;
 			{									
 			   var bookHTML="";
 			   
-			   bookHTML+="<br><span style='font-weight:bold'>Author: </span>"+json.volumeInfo.authors;
+			   bookHTML+="<div class='booklist'><div class='left'>"
+			   bookHTML+="<br><img src='"+json.volumeInfo.imageLinks.thumbnail+"'>";
+			   bookHTML+="<br></div>";
 			
+			   bookHTML+="<div class='right'>";
+			   bookHTML+="<br><span style='font-weight:bold'>Author: </span>"+json.volumeInfo.authors;
+			   
+			   bookHTML+="</div></div>";
+			
+			   $("#book").html(bookHTML);
 			}
 	     }
 </script>
