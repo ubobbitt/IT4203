@@ -25,10 +25,10 @@ img {float: left;
 			   var bookHTML="";
 			
 			   bookHTML+="<span style='padding:10px;'><h2 style='display:inline;'>"
-			   +json.volumeInfo.title+": </h2>"+"</span>";
+				+json.volumeInfo.title+": "+json.volumeInfo.subtitle+"</h2></span>";
 			
 			   bookHTML+="<div class='booklist'><div class='left'>"
-			   bookHTML+="<br><img src='"+json.volumeInfo.imageLinks.thumbnail+"'>";
+			   bookHTML+="<br><img src='"+json.volumeInfo.imageLinks.medium+"'>";
 			   bookHTML+="<br></div>";
 			
 			   bookHTML+="<div class='right'>";
@@ -38,7 +38,7 @@ img {float: left;
 			   bookHTML+="<br><span style='font-weight:bold'>Page Count: </span>"+json.volumeInfo.pageCount+" pages";
 			   bookHTML+="<br><span style='font-weight:bold'>Average Rating: </span>"+json.volumeInfo.averageRating;
 			   bookHTML+="<br><span style='font-weight:bold'>Ratings Count: </span>"+json.volumeInfo.ratingsCount;
-			   bookHTML+="<br><span style='font-weight:bold'>Description: </span>"+json.volumeInfo.description;
+			   bookHTML+="<br>"+json.volumeInfo.description;
 			
 			   bookHTML+="<br><span style='font-weight:bold'>Kind: </span>"+json.kind;
 			   bookHTML+="<br><span style='font-weight:bold'>ID: </span>"+json.id;
