@@ -16,18 +16,11 @@ img {float: left;
 <h1>Milestone 1.1</p> 
 <h2>IT Ebooks Search List</h2>
 <p>This displays a list of books as a search result in the JSON format.</p>
-<div id="Info"></div>
 <div id="books"></div>
 <script> $(document).ready(function() 
          {
             $.getJSON("it-ebooks-search.json", function(data) 
-			{		 
-			   $("#Info").html("<span style='font-weight:bold'>Error: "+json.Error
-							+"<br><span style='font-weight:bold'>Time:</span> "+json.Time
-							+"<br><span style='font-weight:bold'>Total:</span> "+json.Total
-							+"<br><span style='font-weight:bold'>Page:</span> "+json.Page
-							+"<br><br>");
-							
+			{									
 			   for (var x = 0; x < data.Books.length; x++) 
 			   {
 			      var book = data.Books[x];
