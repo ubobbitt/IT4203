@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Milestone 1.3 Google Books List</title>
+<style> 
+body {background-color: yellow;}
+img {float: left;
+	 margin-right: 0.50%;}
+.clear {clear: both;}
+</style>
+<script src="jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+<h1>IT 4203 Individual Project</h1> 
+<h1>Milestone 1.3 - Google Books List</h1> 
+<p>This displays a list of books in the JSON format.</p>
+<p>The JSON file can be viewed here: <a href="google-books-search.json" target="_blank">google-books-search.json</a></p>
+<div id="books"></div>
+<p> </p>
+<script> $(document).ready(function() 
+         {
+            $.getJSON("google-books-search.json", function(data) 
+			{									
+			   for (var x = 0; x < data.Books.length; x++) 
+			   {
+			      var book = data.Books[x];
+                 $("#books").append("<div><img src='"+book["imageLinks"]["thumbnail"]+"' alt='"+book["title"]
+				 +"'/><span><strong>Title:</strong> "+book["title"]
+				 +"</span><br/><span><strong>Subtitle:</strong> "+book["subtitle"]
+				 +"</span><br/><span><strong>Author:</strong> "+book["authors"][0]
+				 +"</span><br/><span><strong>Description:</strong> "+book["description"]
+				 +"</span></br><span><strong>ISBN 10:</strong> "+book["industryIdentifiers"][0]["identifier"]
+				 +"</span></br><span><strong>ISBN 13:</strong> "+book["industryIdentifiers"][1]["identifier"]
+				 +"</span></div><div class='clear'></div><br/><hr/>")
+               }
+			});
+		 });
+	</script>
+<br>
+<a href="milestone1.html">Milestone 1</a>
+<p> </p>
+<a href="index.html">Home</a>
+</body>
+</html>
