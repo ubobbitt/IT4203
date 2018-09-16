@@ -4,19 +4,6 @@
 <title>Milestone 1.1 IT Ebooks Search List</title>
 <style> 
 body {background-color: yellow;}
-#page {margin: 1% auto;
-       width: 95%;
-	   font-family: sans-serif;
-	   background-color: yellow;
-	   cursor: default;
-	   -webkit-user-select: none;
-	   -moz-user-select: none;
-	   -ms-user-select: none;
-	   user-select: none;}
-main {margin: 0 auto;
-	  width: 65%;}
-a, summary { cursor: pointer; }
-@media all and (max-width: 860px) {main {width: 85%;}}
 img {float: left;
 	 margin-right: 0.50%;}
 .clear {clear: both;}
@@ -29,11 +16,7 @@ img {float: left;
 <h1>Milestone 1.1</p> 
 <h2>IT Ebooks Search List</h2>
 <p>This displays a list of books as a search result in the JSON format.</p>
-<section id="page">
-<main>
 <div id="books"></div>
-</main>
-</section>
 <script> $(document).ready(function() 
          {
             $.getJSON("it-ebooks-search.json", function(data) 
