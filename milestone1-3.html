@@ -24,7 +24,7 @@ img {float: left;
 			{									
 			   for (var x = 0; x < data.Books.length; x++) 
 			   {
-			      var book = data.Books[x];
+			      var book = data.Books[x].volumeInfo;
                  $("#books").append("<div><br><img src='"+book["imageLinks"]["thumbnail"]+"' alt='"+book["title"]
 				 +"'/><span><strong>Title:</strong> "+book["title"]
 				 +"</span><br/><span><strong>Subtitle:</strong> "+book["subtitle"]
