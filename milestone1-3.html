@@ -18,21 +18,21 @@ img {float: left;
 <p>The JSON file can be viewed here: <a href="google-books-search.json" target="_blank">google-books-search.json</a></p>
 <div id="books"></div>
 <p> </p>
-<script> $(document).ready(function() 
+<script> $(function() 
          {
-            $.getJSON("google-books-search.json", function(data) 
+            $.getJSON("google-books-search.json", function(json) 
 			{									
-			   for (var x = 0; x < data.Books.length; x++) 
-			   {
-			      var book = data.Books[x].volumeInfo;
-                  $("#books").append("<div><img src='"+book["imageLinks"]["thumbnail"]+"' alt='"+book["title"]
-				  +"'/><span><strong>Title:</strong> "+book["title"]
-				  +"</span><br/><span><strong>Subtitle:</strong> "+book["subtitle"]
-				  +"</span><br/><span><strong>Author:</strong> "+book["authors"][0]
-				  +"</span><br/><span><strong>Description:</strong><details><summary>Toggle Description</summary><p>"+item["description"]+"</p></details></span></br><span><strong>ISBN 10:</strong> "+item["industryIdentifiers"][0]["identifier"]+"</span></br><span><strong>ISBN 13:</strong> "+item["industryIdentifiers"][1]["identifier"]+"</span></div><div class='clear'></div><br/><hr/>");
-                }
-			});
-		 });
+			   var bookHTML="";
+			   
+			   for (x in json.volumeInfo)
+			   {   
+				   bookHTML+="<div class='right'>";
+			       bookHTML+="<br><span style='font-weight:bold'>Title: </span>"+json.volumeInfo.title;
+			       bookHTML+="<br><span style='font-weight:bold'>Subtitle: </span>"+json.volumeInfo.subtitle;
+			       bookHTML+="<br><span style='font-weight:bold'>Author: </span>"+json.volumeInfo.authors;
+				}
+			}
+	     }
 </script>
 <br>
 <a href="milestone1.html">Milestone 1</a>
