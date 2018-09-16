@@ -35,9 +35,9 @@ img {float: left;
 			   bookHTML+="<br><span style='font-weight:bold'>Author: </span>"+json.volumeInfo.authors;
 			   bookHTML+="<br><span style='font-weight:bold'>Publisher: </span>"+json.volumeInfo.publisher;
 			   bookHTML+="<br><span style='font-weight:bold'>Published Date: </span>"+json.volumeInfo.publishedDate;
-			   bookHTML+="<br>"+json.volumeInfo.pageCount+" pages";
-			   bookHTML+="<br>Average Rating: "+json.volumeInfo.averageRating;
-			   bookHTML+="<br>Ratings Count: "+json.volumeInfo.ratingsCount;
+			   bookHTML+="<br><span style='font-weight:bold'>Page Count: </span>"+json.volumeInfo.pageCount+" pages";
+			   bookHTML+="<br><span style='font-weight:bold'>Average Rating: </span>"+json.volumeInfo.averageRating;
+			   bookHTML+="<br><span style='font-weight:bold'>Ratings Count: </span>"+json.volumeInfo.ratingsCount;
 			   bookHTML+="<br><span style='font-weight:bold'>Description: </span>"+json.volumeInfo.description;
 			
 			   bookHTML+="<br><span style='font-weight:bold'>Kind: </span>"+json.kind;
