@@ -45,12 +45,21 @@
     });
 </script>
 <style> body {background-color: white;}
-#content {background-color: lightgrey;
-     width: auto;
-	 border: 25px solid darkgrey;
-	 padding: 25px;
-	 margin 25px;}
- 
+#content {background-color: darkgrey;
+          width: auto;
+	      border: 25px solid lightgrey;
+	      padding: 25px;
+	      margin 25px;}
+#left {background-color: lightgrey;
+          width: auto;
+	      border: 25px solid darkgrey;
+	      padding: 25px;
+	      margin 25px;}
+#right{background-color: lightgrey;
+          width: auto;
+	      border: 25px solid darkgrey;
+	      padding: 25px;
+	      margin 25px;} 
 </style>
 </head>
 
@@ -58,9 +67,11 @@
 <div id="content">
 <h1 id="title"></h1>
 <p><a id="webpage"></a></p>
-<p><img style="float: left;" id="cover" height=200/></p>
 </div>
 
+<div id="left">
+<img id="cover"/>
+</div>
 
 <div id="right">
 <p><span id="author"></span></p>
