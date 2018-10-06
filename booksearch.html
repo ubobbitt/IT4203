@@ -72,6 +72,7 @@ $(document).ready(function () {
 		{
 			console.log(json);
 			var total=json.totalItems;
+			$("total").text(total);
 			$("#header").remove();
 			$("#newheader").text("Searched '"+term+"'; Showing 15 results");
 			$("#radio").css("visibility", "visible");
