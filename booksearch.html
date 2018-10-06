@@ -18,7 +18,7 @@ section {background-color: lightgrey;
 <body>
 <h1>Home</h1>
 <section><h2>Book Search</h2>
-<p>Search and browse through the list of books that match the search term</P
+<p>Search and browse through the list of books that match key terms</P
 <form>
 <input id="searchterm" type="text" name="searchterm" placeholder="Enter a key term.">
 <input id="submit" type="button" value="Search">
@@ -75,7 +75,7 @@ $(document).ready(function () {
 			var total=json.totalItems;
 			$("#total").text("Total results: " +total);
 			$("#header").remove();
-			$("#newheader").text("Searched '"+term+"'; Showing 15 results");
+			$("#newheader").text("Searched '"+term+"'; Showing 15 results;");
 			$("#radio").css("visibility", "visible");
 			var resultHTML="";
 			for (i in json.items)
