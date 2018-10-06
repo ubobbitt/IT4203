@@ -22,7 +22,8 @@
 			var publisher=json.volumeInfo.publisher;
 			var publishedDate=json.volumeInfopublishedDate;
 			var identifier10=json.volumeInfo.industryIdentifiers[0].identifier;
-			var identifier13=json.volumeInfo.industryIdentifiers[1].identifier;
+			var identifier13=json.volumeInfo.industryIdentifiers[1].identifier
+			
 			$("#cover").attr("src",cover);
 			$("#title").text(title);
 			$("#webpage").text(url).attr("href",url);
@@ -49,6 +50,17 @@
 <h1 id="title"></h1>
 <p><a id="webpage"></a></p>
 <img id="cover" height=200 />
+
+
+
+<div id="right">
+<p>Authors:<span id="authors"></span></p>
+<p>Pages:<span id="pages"></span></p>
+<p>Publisher:<span id="publisher"></span></p>
+<p>Publish Date:<span id="publishedDate"></span></p>
+<p>Description:<span id="description"></span></p>
+</div>
+
 <p>Categories:</p>
 <div id="category"></div>
 
