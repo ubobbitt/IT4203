@@ -6,12 +6,17 @@
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <style> body {background-color: white;}
 section {background-color: lightgrey;
-     width: 300px;
+         width: 300px;
 	 border: 25px solid darkgrey;
 	 padding: 25px;
 	 margin 25px;
-	 text-align: center;}
- 
+	 text-align: center;
+	 display: -webkit-flex;
+	 display: flex;}
+ @media (max-width: 600px){
+	 section {
+	  -webkit-flex-direction: column;
+		 flex-direction: column;}
 </style>
 </head>
 <body>
@@ -62,6 +67,6 @@ $("ul").hide();
 </script>
 
 <p><a href="mybookshelf.html">My Bookshelf</a></p>
-<p><a href="milestone2UB.html">Previous Page</a></p></div>
+<p><a href="milestone2.html">Previous Page</a></p></div>
 </body>
 </html>
