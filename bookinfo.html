@@ -16,6 +16,12 @@
 			var title=json.volumeInfo.title;
 			var url=json.volumeInfo.infoLink;
 			var cover=json.volumeInfo.imageLinks.small;
+			var author=json.volumeInfo.authors;
+			var pages=json.volumeInfo.pageCount;
+			var publisher=json.volumeInfo.publisher;
+			var publishedDate=json.volumeInfopublishedDate;
+			var identifier13=json.volumeInfo.industryIdentifiers[1].identifier;
+			var identifier10=json.volumeInfo.industryIdentifiers[0].identifier;
 			
 			$("#cover").attr("src",cover);
 			$("#title").text(title);
@@ -23,6 +29,7 @@
 			$("#author").text("Authors: " + author);
 			$("pages").text("Pages: " + pages);
 			$("#publisher").text("Publisher: " + publisher);
+			$("#publishedDate").text("Published Date: " + publishedDate);
 			$("#identifier13").text("ISBN13: " + identifier13);
 			$("#identifier10").text("ISBN10: " + identifier10);
 			$("#desc").html("Description: " + description);
