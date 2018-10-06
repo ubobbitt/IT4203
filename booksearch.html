@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Book Search Page</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<style> body {background-color: white;}
+section {background-color: lightgrey;
+     width: 300px;
+	 border: 25px solid darkgrey;
+	 padding: 25px;
+	 margin 25px;
+	 text-align: center;}
+ 
+</style>
+</head>
+<body>
+<h1>Home</h1>
+<section><h2>Book Search</h2>
+<form>
+<input id="searchterm" type="text" name="searchterm" placeholder="Enter a key term.">
+<input id="submit" type="button" value="Search">
+</form>
+</section>
+
+
+<div id="radio" style="visibility: hidden;">
+Page number:<br>
+<input id="1" type="radio" name="page" value="1">1
+<input id="2" type="radio" name="page" value="2">2
+<input id="3" type="radio" name="page" value="3">3
+<input id="4" type="radio" name="page" value="4">4
+</div><br>
+
+
+
+<h2>Total results: <span id="total"></span></h2>
+<div id="results" style="display:flex; flex-wrap: wrap;"></div>
+<script>
+$(document).ready(function () {
+	$("#searchterm").keypress(function(event) {
+		if (event.keyCode === 13) {
+			event.preventDefault();
+			$("#submit").click();
+		}
+	});
+	$('#submit, input[type="radio"]').click(function (search) {
+		if (this.id == "#submit") {
+			search.preventDefault();
+		}
+		var term = $("#searchterm").val();
+		var page = document.getElementsByName("page");
+		
+		if (page[0].checked) {
+			var parameter="?q="+term+"&startIndex=0&maxResults=15"; 
+		}
+		else if (page[1].checked) {
+			var parameter="?q="+term+"&startIndex=15&maxResults=15"; 
+		}
+		else if (page[2].checked) {
+			var parameter="?q="+term+"&startIndex=30&maxResults=15"; 
+		}
+		else if (page[3].checked) {
+			var parameter="?q="+term+"&startIndex=45&maxResults=15"; 
+		}
+		else {
+			var parameter="?q="+term+"&startIndex=0&maxResults=15";
+		}
+		
+		var service_point="https://www.googleapis.com/books/v1/volumes/"+parameter;
+		$.getJSON(service_point, function (json)
+		{
+			console.log(json);
+			var total=json.totalItems;
+			$("#header").remove();
+			$("#newheader").text("Searched '"+term+"'; Showing 15 results");
+			$("#radio").css("visibility", "visible");
+			var resultHTML="";
+			for (i in json.items)
+			{
+				var booktitle=json.items[i].volumeInfo.title;
+				var bookid=json.items[i].id;
+				var cover="";
+				if (json.items[i].volumeInfo.imageLinks != null)
+					cover=json.items[i].volumeInfo.imageLinks.smallThumbnail;
+				resultHTML+="<div class='bookdiv'>";
+				resultHTML+="<a href='bookinfo.html?id="+bookid+"'>"+booktitle+"</a>";
+				resultHTML+="<br><br><img src='"+cover+"'/>";
+				resultHTML+="</div>";;
+			}
+			$("#results").html(resultHTML); 
+			$(".bookdiv").css("width", "300px");
+		});
+	});
+});
+</script>
+
+<p><a href="mybookshelf.html">My Bookshelf</a></p>
+<p><a href="milestone2.html">Previous Page</a></p></div>
+</body>
+</html>
