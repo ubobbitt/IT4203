@@ -33,7 +33,7 @@ Page number:<br>
 <input id="4" type="radio" name="page" value="4">4
 </div><br>
 
-<h2><span id="newheader"></span>; <span id="total"></span></h2>
+<h2><span id="newheader"></span> <span id="total"></span></h2>
 
 <div id="results" style="display:flex; flex-wrap: wrap;"></div>
 <script>
@@ -72,7 +72,6 @@ $(document).ready(function () {
 		{
 			console.log(json);
 			var total=json.totalItems;
-			//$("#total").text(total);
 			$("#total").text("Total results: " +total);
 			$("#header").remove();
 			$("#newheader").text("Searched '"+term+"'; Showing 15 results");
