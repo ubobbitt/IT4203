@@ -7,11 +7,11 @@
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script>
     $(function(){
-		//var id=window.location.search.split('id=')[1];
-		var id = location.href.substring(location.href.indexOf("=")+1;
+		var id=window.location.search.split('id=')[1];
 		var service_point="https://www.googleapis.com/books/v1/volumes/"+id;
         $.getJSON(service_point, function (json)
         {
+			console.log(json);
 			var booksHTML="";
 			var description=json.volumeInfo.description;
 			var title=json.volumeInfo.title;
