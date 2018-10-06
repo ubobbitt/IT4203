@@ -20,9 +20,10 @@
 			var author=json.volumeInfo.authors;
 			var pages=json.volumeInfo.pageCount;
 			var publisher=json.volumeInfo.publisher;
-			var publishedDate=json.volumeInfopublishedDate;
+			var publishedDate=json.volumeInfo.publishedDate;
 			var identifier10=json.volumeInfo.industryIdentifiers[0].identifier;
 			var identifier13=json.volumeInfo.industryIdentifiers[1].identifier
+			var retailPrice=json.saleInfo.retailPrice.amount;
 			
 			$("#cover").attr("src",cover);
 			$("#title").text(title);
@@ -33,6 +34,7 @@
 			$("#publishedDate").text("Published Date: " + publishedDate);
 			$("#identifier10").text("ISBN10: " + identifier10);
 			$("#identifier13").text("ISBN13: " + identifier13);
+			$("#retailPrice").text("Retail Price: $" + retailPrice.amount);
 			$("#description").html("Description: " + description);
 			
 			var resultHTML="";
