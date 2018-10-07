@@ -2,10 +2,10 @@
 
 <html>
 <head>
-	<title>Google Books Search</title>
+	<title>My Bookshelf</title>
+	<meta charset="utf-8">
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 
-</head>
 <script>
     $(function () {
 
@@ -13,8 +13,6 @@
         var service_point2 = "https://www.googleapis.com/books/v1/users/101626196049577148534/bookshelves/2/volumes";
 
         $.getJSON(service_point2, function (json2) {
-
-            //$("#shelf").text(json.title); 
 
             resultHTML = "";
             for (i in json2.items) {
@@ -24,7 +22,7 @@
 
                 resultHTML += "<div class='bookdiv'>";
                 resultHTML += "<img src='" + cover + "' style='float: left' />";
-                resultHTML += "<a href='bookinfo.php?id=" + bookid + "'>" + booktitle + "</a>";
+                resultHTML += "<a href='bookinfo.html?id=" + bookid + "'>" + booktitle + "</a>";
                 resultHTML += "</div>";;
             }
             $("#results").html(resultHTML);
@@ -32,12 +30,24 @@
         });
     });
 </script>
+
+<style> body {background-color: lightgrey;
+              width: auto;
+	          border: 25px solid darkgrey;
+	          padding: 25px;
+	          margin 25px;}
+</style>
+</head>
 <body>
 
 <h1 id="title"></h1>
-<h2>Bookshelf Name: <span id="shelf"></span>
-</h2>
+<h1 style="text-align: center;">Ursula's Bookshelf <span id="shelf"></span>
+</h1>
 <div id="results" style="display: flex; flex-wrap: wrap;"></div>
 
+<br>
+<p><a href="booksearch.html">Home (Book Search Page)</a></p>
+<br>
+<p><a href="milestone2.html">Google Books<a/></p>
 </body>
 </html>
