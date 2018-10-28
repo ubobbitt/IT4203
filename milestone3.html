@@ -110,7 +110,7 @@
                 $.getJSON(shelf_request, function(json) {
 
                     var length = json.items.length;
-                    $("#result").html("Ursula's Bookshelf<br>");
+                    $("#result").html("Ursula's Bookshelf<br><br>");
 
                     for (i = 0; i < length; i++) {
                         var title = json.items[i].volumeInfo.title;
