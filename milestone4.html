@@ -256,7 +256,7 @@
 
                         result.append("<div class = 'bookDetailedInfo'> <img src = " + coverImg + " style='float: left; margin-right: 1%; margin-bottom: 2%;'/> <h3>" + title + "</h3>" +
                             "<p>Author(s): " + author + "</p>" + description + "<br><br>Publisher: " + publisher + ", " + pubDate + "<br>Price: " + 
-							price + "<br><a href=" + details + ">Details</a></div>");
+							price + "<br><a href=" + details + ">More Info</a></div>");
                     }
                 });
             }
@@ -272,11 +272,11 @@
                     <label for="searchbox" class="sr-only">Search</label>					
                     <input class="form-control w-75" type="text" placeholder="Search" id="searchTerm" aria-label="Search">
                 </div>
-		
+		<div>
 		    <input type="submit" class="btn btn-secondary" id="btnSearch" value="Search">	
 		    <input type="submit" class="btn" id="btnList" value="List View">
 		    <input type="submit" class="btn" id="btnGrid" value="Grid View">
-						
+		</div>				
             </form>
             <nav>
                 <div class="nav-item nav-tabs" id="nav-tab" role="tablist">
