@@ -1,9 +1,6 @@
 
 header {
-    background: url(banner.jpg) fixed no-repeat center;
-    background-size: cover;
-    height:200px;
-    background-blend-mode: color;
+    background: lightyellow;
 }
 
 #searchIcon {
@@ -16,13 +13,13 @@ header {
     margin-left: -100px;
     font-size: 20px;
     height:45px;
-    background:  rgba(0,0,0, 0);
+    background:  light-yellow;
     border:none;
 }
 #main {
     overflow: auto;
     padding: 0 20px 50px 20px;
-    background: #f5f5f5;
+    background: lightyellow;
 }
 
 #searchBox{
@@ -30,7 +27,7 @@ header {
     top:80px;
     display: block;
     margin: 0 auto;
-    background: rgba(0,0,0, 0.5);
+    background: lightyellow;
     border:none;
     height:45px;
     -webkit-border-radius:10px;
@@ -54,7 +51,7 @@ header {
     padding: 0px 10px 0px 10px;
     margin: 50px 0px 0px 0px;
     box-shadow: 0px 1px 1px black;
-    background: #fff;
+    background: lightyellow;
 }
 
 .calender {
@@ -207,7 +204,7 @@ h6.overview {
     position: relative;
     top:48px;
     border-radius: 10px;
-    color: white;
+    color: lightyellow;
     border:none;
 }
 
