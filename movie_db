@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale=1">
+    <title>Term Project</title>
+    <link rel="stylesheet" href="Style.css">
+
+</head>
+<body>
+    <header class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+        <input id="searchBox" type="text" placeholder="Search for a movie">
+        <button id="searchIcon"><i class="fa fa-search" aria-hidden="true"></i></button>
+        <button id="home">Home</button>
+    </header>
+    <div id="main">
+    </div>
+    <div id="details"></div>
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+        crossorigin="anonymous">
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
