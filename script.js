@@ -2,9 +2,9 @@
 
 function details( movieid) {
     var vid;
-    $.get("https://api.themoviedb.org/3/movie/"+movieid+"?api_key=9824d5d7ab77a02aa6e9cc1b18bab686&language=en-US",
+    $.get("https://api.themoviedb.org/3/movie/"+movieid+"?api_key=241d96bf877b0c128cca31a56fca630b&language=en-US",
         function(result){
-            $.get("https://api.themoviedb.org/3/movie/"+movieid+"/videos?api_key=9824d5d7ab77a02aa6e9cc1b18bab686&language=en-US",
+            $.get("https://api.themoviedb.org/3/movie/"+movieid+"/videos?api_key=241d96bf877b0c128cca31a56fca630b&language=en-US",
             function(x){vid = x.results[0].key;
                 $('#main').html('');
                 $('#main').css("background","none");
@@ -96,7 +96,7 @@ $(function (){
             '</div>'+
             '</div></div>');
     }
-    $.get("https://api.themoviedb.org/3/movie/popular?api_key=9824d5d7ab77a02aa6e9cc1b18bab686&language=en-US&page=1",
+    $.get("https://api.themoviedb.org/3/movie/popular?api_key=241d96bf877b0c128cca31a56fca630b&language=en-US&page=1",
         function popular(popularData){
             // console.log(popularData);
             popularData.results.forEach(function(x,i){cards(popularData,i);home = popularData;});
@@ -106,7 +106,7 @@ $(function (){
         console.log($('#searchBox').val());
         if($('#searchBox').val()!== "") {
             $('#details').html('');
-            $.get('https://api.themoviedb.org/3/search/movie?api_key=9824d5d7ab77a02aa6e9cc1b18bab686&language=en-US&query='+$('#searchBox').val()+'&page=1&include_adult=false',
+            $.get('https://api.themoviedb.org/3/search/movie?api_key=241d96bf877b0c128cca31a56fca630b&language=en-US&query='+$('#searchBox').val()+'&page=1&include_adult=false',
             function search(searchData){
             // console.log(searchData);
             // console.log($('#searchBox').val());
