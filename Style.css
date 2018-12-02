@@ -1,9 +1,7 @@
 
 header {
-    background: url(banner.jpg) fixed no-repeat center;
-    background-size: cover;
     height:200px;
-    background-blend-mode: color;
+    background: lightyellow;
 }
 
 #searchIcon {
@@ -16,13 +14,13 @@ header {
     margin-left: -100px;
     font-size: 20px;
     height:45px;
-    background:  rgba(0,0,0, 0);
+    background:  lightyellow;
     border:none;
 }
 #main {
     overflow: auto;
     padding: 0 20px 50px 20px;
-    background: #f5f5f5;
+    background: lightyellow;
 }
 
 #searchBox{
@@ -54,7 +52,7 @@ header {
     padding: 0px 10px 0px 10px;
     margin: 50px 0px 0px 0px;
     box-shadow: 0px 1px 1px black;
-    background: #fff;
+    background: lightyellow;
 }
 
 .calender {
@@ -115,9 +113,8 @@ h6.overview {
     position: relative;
     margin: 30px 20px;
     top: 100px;
-    background: #f5f5f5;
+    background: light-yellow;
     padding: 150px 20px 20px 20px;
-    /*border-radius: 10px;*/
     box-shadow: 0px 1px 2px black;
     opacity: 0;
 }
@@ -165,7 +162,6 @@ h6.overview {
     height: 20px;
     background: grey;
     position: relative;
-    /*max-width:450px;*/
 }
 
 .innermeter {
@@ -198,7 +194,7 @@ h6.overview {
 
 
 #home {
-    background: rgba(0,0,0,.5);
+    background: lightyellow;
     font-size: large;
     height:50px;
     width:200px;
@@ -234,7 +230,6 @@ h6.overview {
 
     .overview2 {
         margin-top: -30px;
-        /*padding-left: 10px;*/
     }
 
     .meter {
