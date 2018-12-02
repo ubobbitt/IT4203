@@ -1,14 +1,5 @@
-
-
 function details( movieid) {
     var vid;
-    
-    $("#result").html("Results: Page " + pageNum + "<hr noshade>");
-                for (i = 0; i < 10; i++) {
-                    var page = "&startIndex=" + i * 10;
-                    var num = i + 1;
-                    $("#result").append('<a href = "javascript:;" class="page" startIndex = ' + page + ' pageNum="' + num + '">' + (i + 1) + '</a> &nbsp&nbsp');
-                }
     
     $.get("https://api.themoviedb.org/3/movie/"+movieid+"?api_key=9824d5d7ab77a02aa6e9cc1b18bab686&language=en-US",
         function(result){
