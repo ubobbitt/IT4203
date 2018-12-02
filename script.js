@@ -77,7 +77,6 @@ $(function (){
         var dots = "...";
         if(string.length > limit)
         {
-            // you can also use substr instead of substring
             string = string.substring(0,limit) + dots;
         }
 
@@ -98,7 +97,6 @@ $(function (){
     }
     $.get("https://api.themoviedb.org/3/movie/popular?api_key=9824d5d7ab77a02aa6e9cc1b18bab686&language=en-US&page=1",
         function popular(popularData){
-            // console.log(popularData);
             popularData.results.forEach(function(x,i){cards(popularData,i);home = popularData;});
         });
 
@@ -108,8 +106,6 @@ $(function (){
             $('#details').html('');
             $.get('https://api.themoviedb.org/3/search/movie?api_key=9824d5d7ab77a02aa6e9cc1b18bab686&language=en-US&query='+$('#searchBox').val()+'&page=1&include_adult=false',
             function search(searchData){
-            // console.log(searchData);
-            // console.log($('#searchBox').val());
                 $('#main').html('<h4 style="margin-bottom: -30px;">Search result for "'+$('#searchBox').val()+'"</h4>');
                 searchData.results.forEach(function(x,i){
                     cards(searchData,i);
