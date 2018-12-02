@@ -10,7 +10,7 @@ function details( movieid) {
                 $('#main').css("background","none");
                 console.log(result);
                 $(' #details').html(
-                    '<a href="https://www.youtube.com/watch?v='+vid+'"><img class="poster2 youtube" src="https://www.youtube.com/yt/brand/media/image/YouTube-icon-full_color.png" alt="paly" width="50px"></a>'+
+                    '<a href="https://www.youtube.com/watch?v='+vid+'"><img class="poster2 youtube" src="https://www.youtube.com/yt/brand/media/image/YouTube-icon-full_color.png" alt="play" width="50px"></a>'+
                     '<div><img class="poster2" src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/'+result.poster_path+'" alt="picture"></div>'+
                     '<div class="movieDetails">'+
                     '<h3 class="title2">'+result.original_title+'</h3>'+'<h4 style="text-align: center;margin-top:0px;"> ( '+result.release_date.substring(0,4)+')</h4>'+
