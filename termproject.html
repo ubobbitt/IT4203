@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ursula Bobbitt - Term Project</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.0/mustache.min.js"></script>
+
+    <script id='searchResultsTemplate' type='text/template'>
+
+        {{#results}}
+        <div class='resultItem'>
+            <h2><a href="javascript:;" class="mlink" mID={{id}} mType={{media_type}}>{{title}}{{name}}</a>{{#media_type}} - <i>{{media_type}}</i>{{/media_type}}</h2>
+
+            <a href="javascript:;" class="mlink" mID={{id}} mType={{media_type}}>
+                <img {{^poster_path}} {{^profile_path}}
+                     src="https://image.tmdb.org/t/p/w500/" alt="no picture given"
+                     {{/profile_path}} {{/poster_path}}
+                     src='https://image.tmdb.org/t/p/w500/{{poster_path}}{{profile_path}}'
+                     class="resultPic" alt='picture of {{name}}{{title}}'>
+            </a>
+            <h3 class="overview">{{overview}}</h3>
+            {{^overview}}
+            <h3>Known For:</h3>
+            <div class="kfList">
+                <ul>
+                    {{#known_for}}
+                    {{^title}}
+                    <li>{{name}}</li>{{/title}}
+                    {{#title}}
+                    <li>{{title}}</li>{{/title}}
+                    {{/known_for}}
+                </ul>
+            </div>
+            {{/overview}}
+        </div>
+        {{/results}}
+    </script>
+
+    <script>
+        $(document).ready(function () {
+
+            $(document).keypress(function (e) {
+                if (e.which == 13) {
+                    e.preventDefault();
+                    searchHandler();
+                }
+            });
+
+            $("#closeViewButton").click(function () {
+                $("#detailsView").fadeOut();
+            });
+            $('#searchButton').click(searchHandler);
+            $("#changeViewButton").click(function () {
+                if ($(this).attr("viewType") == "grid") {
+                    $(".resultItem").css("width", "80%");
+                    $("#changeViewButton").attr("viewType", "list");
+                    $(".resultPic").css("max-width", "10%");
+                } else {
+                    $(".resultItem").css("width", "18%");
+                    $("#changeViewButton").attr("viewType", "grid");
+                    $(".resultPic").css("max-width", "60%");
+                }
+            });
+            $("#topMovieButton").click(function () {
+                num = 1;
+                url = 'https://api.themoviedb.org/3/movie/popular?api_key=241d96bf877b0c128cca31a56fca630b&language=en-US&page=1';
+                getTopMovies(url);
+            });
+            $("#topTVButton").click(function () {
+                num = 1;
+                url = 'https://api.themoviedb.org/3/tv/popular?api_key=241d96bf877b0c128cca31a56fca630b&language=en-US&page=1';
+                getTopTV(url);
+            });
+            $("#discoverButton").click(function () {
+                query = $("#discoverQuery").val();
+                num = 1;
+                discoverType = $("#discoverList").val();
+                media = $("#mediaList").val();
+                url = api + "/discover/" + media + apikey + "&sort_by=popularity.desc&" + discoverType + "=" + query;
+                getResults(url);
+            });
+
+            var api = 'https://api.themoviedb.org/3';
+            var multisearch = '/search/multi';
+            var apikey = '?api_key=241d96bf877b0c128cca31a56fca630b';
+            var num = 1;
+            var pageNum = "&page=" + num;
+            var loading = false;
+
+            $(document).on('scroll', function () {
+                if ($(document).scrollTop() + $(window).height() >= $(document).height() - 200 && loading == false) {
+                    loading = true;
+                    num = num + 1;
+                    pageNum = "&page=" + num;
+                    url = url + pageNum;
+                    if ($("#head").html() == '<br><h2>Movies, TV Shows, and People Results</h2>') {
+                        getResults(url);
+                    } else if ($("#head").html() == '<br><h2>Top Movies</h2>') {
+                        getTopMovies(url);
+                    } else {
+                        getTopTV(url);
+                    }
+                }
+            });
+
+            function searchHandler() {
+                $("#head").html("loading...");
+                query = "&query=" + $("#query").val();
+                num = 1;
+                url = api + multisearch + apikey + query;
+                getResults(url);
+            }
+            function linkHandler() {
+                $(".mlink").click(function () {
+                    $("#detailsView").fadeIn();
+                    type = "/" + $(this).attr("mType");
+                    var id = "/" + $(this).attr("mID");
+                    var url = api + type + id + apikey;
+                    getDetails(url);
+                });
+            }
+            function movieLinkHandler() {
+                $(".mlink").click(function () {
+                    $("#detailsView").fadeIn();
+                    type = "/movie";
+                    var id = "/" + $(this).attr("mID");
+                    var url = api + type + id + apikey;
+                    getDetails(url);
+                });
+            }
+            function tvLinkHandler() {
+                $(".mlink").click(function () {
+                    $("#detailsView").fadeIn();
+                    type = "/tv";
+                    var id = "/" + $(this).attr("mID");
+                    var url = api + type + id + apikey;
+                    getDetails(url);
+                });
+            }
+            function creditsLinkHandler() {
+                $(".creditsLink").click(function () {
+                    type = "/person";
+                    var id = "/" + $(this).attr("pID");
+                    var url = api + type + id + apikey;
+                    getDetails(url);
+                });
+            }
+            function getResults(url) {
+
+                $.getJSON(url, function (json) {
+                    var length = json.results.length;
+                    $('#head').html('<br><h2>Movies, TV Shows, and People Results</h2>');
+                    var template = $('#searchResultsTemplate').html();
+                    var html = Mustache.render(template, json);
+                    if (num == 1) {
+                        $("#result").html(html);
+                    } else if (num > 1) {
+                        $("#result").append(html);
+                    }
+                    loading = false;
+                    $("#result").css("opacity", "1");
+                    linkHandler();
+                });
+            }
+            function getDetails(url) {
+
+                $.getJSON(url, function (json) {
+                    var template = $('#detailsTemplate').html();
+                    var html = Mustache.render(template, json);
+                    $("#details").html(html);
+
+                    var creditsUrl = "https://api.themoviedb.org/3" + type + "/" + json.id + "/credits?api_key=53dad4c9b5672542ef46b75caa820412";
+                    $.getJSON(creditsUrl, function (json2) {
+                        var template2 = $("#creditsTemplate").html();
+                        var html2 = Mustache.render(template2, json2);
+                        $(".detailsData").append(html2);
+                        creditsLinkHandler();
+                    });
+                });
+
+            }
+            function getTopMovies(url) {
+
+                $.getJSON(url, function (json) {
+                    var length = json.results.length;
+                    $('#head').html('<br><h2>Top Movies</h2>');
+                    var template = $('#searchResultsTemplate').html();
+                    var html = Mustache.render(template, json);
+                    if (num == 1) {
+                        $("#result").html(html);
+                    } else if (num > 1) {
+                        $("#result").append(html);
+                    }
+                    loading = false;
+                    $("#result").css("opacity", "1");
+                    movieLinkHandler();
+                });
+            }
+            function getTopTV(url) {
+                $.getJSON(url, function (json) {
+                    var length = json.results.length;
+                    $('#head').html('<br><h2>Top TV Shows</h2>');
+                    var template = $('#searchResultsTemplate').html();
+                    var html = Mustache.render(template, json);
+                    if (num == 1) {
+                        $("#result").html(html);
+                    } else if (num > 1) {
+                        $("#result").append(html);
+                    }
+                    loading = false;
+                    $("#result").css("opacity", "1");
+                    tvLinkHandler();
+                });
+            }
+        });
+    </script>
+
+</head>
+
+<script id="detailsTemplate" type="text/template">
+    <div id="detailsGrid" style="background-image: url(https://image.tmdb.org/t/p/w640{{backdrop_path}})">
+        <div class="detailsHeader">
+            {{title}}{{name}}
+        </div>
+        <img {{^poster_path}} {{^profile_path}}
+             src="no image.png" alt="no picture given"
+             {{/profile_path}} {{/poster_path}}
+             src='https://image.tmdb.org/t/p/w500{{poster_path}}{{profile_path}}'
+             class="detailsPic" alt='picture of {{name}}{{title}}'>
+        <div class="detailsData">
+            <p>
+                {{#overview}}Overview: {{overview}}<br>{{/overview}}
+                {{#biography}}Biography: {{biography}}<br>{{/biography}}
+                {{#place_of_birth}}Place of Birth: {{place_of_birth}}<br>{{/place_of_birth}}
+                {{#birthday}}Date of Birth: {{birthday}}<br>{{/birthday}}
+                {{#created_by}}Created By: {{name}} <br>{{/created_by}}
+                {{#first_air_date}}First Aired: {{first_air_date}}<br>{{/first_air_date}}
+                {{#last_air_date}}Last Aired: {{last_air_date}}<br>{{/last_air_date}}
+                {{#release_date}}Release Date: {{release_date}}<br>{{/release_date}}
+                {{#genres}}Genre(s): {{name}}<br>{{/genres}}
+                {{#number_of_episodes}}Number of Episodes: {{number_of_episodes}}<br>{{/number_of_episodes}}
+                {{#number_of_seasons}}Number of Seasons: {{number_of_seasons}}<br>{{/number_of_seasons}}
+                {{#homepage}}Homepage: <a href={{homepage}}>{{homepage}}</a><br>{{/homepage}}
+                {{#networks}}Network(s): {{name}}<br>{{/networks}}
+            </p>
+        </div>
+    </div>
+</script>
+
+<style>
+    body {
+        background-color: lightyellow;
+    }
+
+    #displayDiv {
+        display: block;
+        margin-left: left;
+        margin-right: left;
+        margin-top: 100px;
+        margin-bottom: 70px;
+        padding: 10px;
+        width: 60%;
+		
+    }
+
+    #searchArea {
+        padding: 5px;
+        text-align: center;
+        background-color: lightyellow;
+		
+		
+    }
+
+    #discoverSection {
+        padding: 5px;
+        text-align: center;
+        background-color: lightyellow;
+		
+    }
+
+    #result {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: left;
+        background-color: lightyellow;
+        opacity: 0;
+		
+    }
+
+    #detailsView {
+        position: fixed;
+        top: 10%;
+        left: 10%;
+        right: 10%;
+        overflow: auto;
+        width: 80%;
+        height: auto;
+        background-color: lightyellow;
+        padding: 10px;
+        display: none;
+        box-shadow: 0px 0px 20px 20px #575757;
+        outline: 500px solid rgba(0,0,0,0.8);
+        z-index: 2;
+		
+    }
+
+    #detailsGrid {
+        display: grid;
+        grid-gap: .3rem;
+        grid-template-columns: 2fr 2fr 2fr 2fr 2fr;
+        grid-template-rows: 2fr 5fr;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-color: lightyellow;
+		
+    }
+
+    .detailsHeader {
+        grid-column: 2/5;
+        grid-row: 1/2;
+        margin: 5px;
+        background-color: lightyellow;
+        padding: 4px;
+        font-size: 2.5em;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    .detailsPic {
+        grid-column: 2/3;
+        grid-row: 2/3;
+        max-height: 480px;
+        width: auto;
+        clear: both;
+        margin: 5px;
+        background-color: lightyellow;
+        padding: 4px;
+    }
+
+    .detailsData {
+        grid-column: 3/5;
+        grid-row: 2/3;
+        margin: 5px;
+        background-color: lightyellow;
+        padding: 4px;
+        max-height: 100%;
+        overflow: auto;
+    }
+
+    .resultItem {
+        background-color: lightyellow;
+        border-radius: 2px;
+        width: 18%;
+        overflow-wrap: break-word;
+        max-height: 490px;
+        overflow: auto;
+        margin: 5px;
+        text-align: left;
+        padding: 4px;
+        flex-grow: 1;
+    }
+
+    .resultPic {
+        max-width: 60%;
+        height: auto;
+    }
+
+    .kfList {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+
+    .overview {
+        text-align: justify;
+        font-weight: normal;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    h3 {
+        font-size: .8em;
+    }
+
+    h1 {
+        font-size: 50px;
+        text-align: center;
+        color: black;
+    }
+
+    h2 {
+        text-align: left;
+        font-size: 20px;
+    }
+
+    ul {
+        text-align: left;
+    }
+	
+	.center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 20%;
+		height: 20%;
+    }
+</style>
+
+<body>
+    <h1>Ursula Bobbitt's Movie Search</h1>
+	<img src="https://www.themoviedb.org/assets/1/v4/logos/408x161-powered-by-rectangle-green-bb4301c10ddc749b4e79463811a68afebeae66ef43d17bcfd8ff0e60ded7ce99.png" 
+	     alt="Powered by The Movie Database"
+		 class="center">
+	    <center><div id="displayDiv">
+        <div id="searchArea">
+            <button type=button id=topMovieButton>Top Movies</button>
+            <button type=button id=topTVButton>Top TV Shows</button>
+            <button type="button" id=changeViewButton viewType=grid>Grid & List View</button>
+            <br />
+            <br />
+            <br />
+            <div id="discoverSection">
+                <form action="">
+                    <input type="text" id="query" autofocus placeholder="Search for a movie, tv show, or person" size="60"><button type="button" id="searchButton">Search</button>
+                </form>
+                <br />
+                <br />
+                <br />
+            </div>
+        </div>
+        <span id="head"></span>
+        <div id="result"></div>
+    </div>
+    <div id="detailsView">
+        <button type="button" id="closeViewButton">Close</button>
+        <div id="details"></div>
+    </div>
+	</center>
+    </body>
+</html>
+
