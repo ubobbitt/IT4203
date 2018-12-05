@@ -229,19 +229,19 @@
              class="detailsPic" alt='picture of {{name}}{{title}}'>
         <div class="detailsData">
             <p>
-                {{#overview}}Overview: {{overview}}<br>{{/overview}}
-                {{#biography}}Biography: {{biography}}<br>{{/biography}}
-                {{#place_of_birth}}Place of Birth: {{place_of_birth}}<br>{{/place_of_birth}}
-                {{#birthday}}Date of Birth: {{birthday}}<br>{{/birthday}}
-                {{#created_by}}Created By: {{name}} <br>{{/created_by}}
-                {{#first_air_date}}First Aired: {{first_air_date}}<br>{{/first_air_date}}
-                {{#last_air_date}}Last Aired: {{last_air_date}}<br>{{/last_air_date}}
-                {{#release_date}}Release Date: {{release_date}}<br>{{/release_date}}
-                {{#genres}}Genre(s): {{name}}<br>{{/genres}}
-                {{#number_of_episodes}}Number of Episodes: {{number_of_episodes}}<br>{{/number_of_episodes}}
-                {{#number_of_seasons}}Number of Seasons: {{number_of_seasons}}<br>{{/number_of_seasons}}
-                {{#homepage}}Homepage: <a href={{homepage}}>{{homepage}}</a><br>{{/homepage}}
-                {{#networks}}Network(s): {{name}}<br>{{/networks}}
+                {{#overview}}Overview: {{overview}}<br><br>{{/overview}}
+                {{#biography}}Biography: {{biography}}<br><br>{{/biography}}
+                {{#place_of_birth}}Place of Birth: {{place_of_birth}}<br><br>{{/place_of_birth}}
+                {{#birthday}}Date of Birth: {{birthday}}<br><br>{{/birthday}}
+                {{#created_by}}Created By: {{name}} <br><br>{{/created_by}}
+                {{#first_air_date}}First Aired: {{first_air_date}}<br><br>{{/first_air_date}}
+                {{#last_air_date}}Last Aired: {{last_air_date}}<br><br>{{/last_air_date}}
+                {{#release_date}}Release Date: {{release_date}}<br><br>{{/release_date}}
+                {{#genres}}Genre(s): {{name}}<br><br>{{/genres}}
+                {{#number_of_episodes}}Number of Episodes: {{number_of_episodes}}<br><br>{{/number_of_episodes}}
+                {{#number_of_seasons}}Number of Seasons: {{number_of_seasons}}<br><br>{{/number_of_seasons}}
+                {{#homepage}}Homepage: <a href={{homepage}}>{{homepage}}</a><br><br>{{/homepage}}
+                {{#networks}}Network(s): {{name}}<br><br>{{/networks}}
             </p>
         </div>
     </div>
@@ -369,6 +369,7 @@
     .kfList {
         max-width: 80%;
         margin: 0 auto;
+		justify-content: left;
     }
 
     .overview {
